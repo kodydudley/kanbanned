@@ -4,16 +4,30 @@
     <img class="rounded" :src="profile.picture" alt="" />
     <p>{{ profile.email }}</p>
   </div>
+  <form @submit.prevent="creatBoard">
+    <input type="text" placeholder="Board Title" v-model="state.newBoard.title">
+    <button type="submit" class="btn btn-transparent btn-outline-success">
+      Submit
+    </button>
+  </form>
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, reactive } from 'vue'
 import { AppState } from '../AppState'
+import boardsService from '../services/BoardsService'
 export default {
   name: 'Profile',
   setup() {
+    const state = reactive({
+      newBoard: {}
+    })
     return {
-      profile: computed(() => AppState.profile)
+      state,
+      profile: computed(() => AppState.profile),
+      createBoards() {
+        boardsService.createBoards(state.newBoard)
+      }
     }
   }
 }
