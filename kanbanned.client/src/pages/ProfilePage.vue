@@ -1,14 +1,16 @@
 <template>
-  <div class="about text-center container-fluid">
-    <div class="row">
-      <h1>Welcome {{ profile.name }}</h1>
+  <div class="about text-center container-fluid bodyFont">
+    <div class="row justify-content-center">
+      <h1>
+        Welcome To Your Boards {{ profile.name }}
+      </h1>
       <img class="rounded" :src="profile.picture" alt="" />
       <p>{{ profile.email }}</p>
     </div>
-    <div class="row">
+    <div class="row justify-content-center my-3">
       <form @submit.prevent="createBoards">
         <input type="text" placeholder="Board Title" v-model="state.newBoard.title">
-        <button type="submit" class="btn btn-transparent btn-outline-success">
+        <button type="submit" class="btn btn-sm btn-transparent btn-outline-success ml-3">
           Submit
         </button>
       </form>
@@ -26,6 +28,7 @@ import { computed, reactive, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import { boardsService } from '../services/BoardsService'
 import BoardsComponent from '../components/BoardsComponent'
+// import { useRoute } from 'vue-router'
 export default {
   name: 'Profile',
   setup() {
@@ -34,6 +37,7 @@ export default {
       newBoard: {},
       title: ''
     })
+    // const route = useRoute()
     return {
       state,
       profile: computed(() => AppState.profile),
@@ -50,5 +54,9 @@ export default {
 <style scoped>
 img {
   max-width: 100px;
+}
+
+.bodyFont{
+font-family: 'Poppins', sans-serif;
 }
 </style>

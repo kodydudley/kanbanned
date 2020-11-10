@@ -1,8 +1,8 @@
 <template>
-  <div class="boardsComponent col-4 justify-content-around">
+  <div class="boardsComponent my-3 col-4 justify-content-around">
     <div class="card">
       <router-link :to="{name: 'ActiveBoard', params:{boardId: boards._id}} ">
-        <div>
+        <div class="text-dark bodyFont">
           {{ boards.title }}
         </div>
       </router-link>
@@ -27,5 +27,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.bodyFont{
+font-family: 'Poppins', sans-serif;
+}
 </style>

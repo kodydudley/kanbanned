@@ -1,12 +1,10 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark headerFont">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img
-          alt="logo"
-          src="../assets/img/cw-logo.png"
-          height="45"
-        />
+        <i class="fas fa-sitemap fa-lg"></i><h4 class="headerFont">
+          organyze
+        </h4>
       </div>
     </router-link>
     <button
@@ -22,14 +20,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <router-link :to="{ name: 'Home' }" class="nav-link">
+        <li class="nav-item mr-2">
+          <router-link :to="{ name: 'Home' }" class="nav-link headerFont">
             Home
           </router-link>
         </li>
-        <li class="nav-item">
-          <router-link :to="{ name: 'About' }" class="nav-link">
+        <li class="nav-item mr-2">
+          <router-link :to="{ name: 'About' }" class="nav-link headerFont">
             About
+          </router-link>
+        </li>
+        <li class="nav-item mr-2">
+          <router-link :to="{ name: 'Profile' }">
+            <div class="nav-link headerFont">
+              Profile
+            </div>
           </router-link>
         </li>
       </ul>
@@ -60,11 +65,6 @@
             :class="{ show: state.dropOpen }"
             @click="state.dropOpen = false"
           >
-            <router-link :to="{ name: 'Profile' }">
-              <div class="list-group-item list-group-item-action hoverable">
-                Profile
-              </div>
-            </router-link>
             <div
               class="list-group-item list-group-item-action hoverable"
               @click="logout"
@@ -103,6 +103,11 @@ export default {
 </script>
 
 <style scoped>
+.headerFont{
+  font-family: 'Amatic SC', cursive;
+  font-size: 1.5em;
+}
+
 .dropdown-menu {
   user-select: none;
   display: block;
