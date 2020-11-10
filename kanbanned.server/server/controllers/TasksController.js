@@ -3,23 +3,23 @@ import { Auth0Provider } from '@bcwdev/auth0provider'
 import { tasksService } from '../services/TasksService'
 export class TasksController extends BaseController {
   constructor() {
-    super('api/boards/:boardId/lists/:listId/tasks')
+    super('api/tasks')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('', this.getTasks)
+      // .get('', this.getTasks)
     // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .post('', this.createTasks)
       .delete('/:taskId', this.deleteTask)
       .get('/:taskId', this.getTaskById)
   }
 
-  async getTasks(req, res, next) {
-    try {
-      return res.send(await tasksService.getTasks())
-    } catch (error) {
-      next(error)
-    }
-  }
+  // async getTasks(req, res, next) {
+  //   try {
+  //     return res.send(await tasksService.getTasks())
+  //   } catch (error) {
+  //     next(error)
+  //   }
+  // }
 
   async createTasks(req, res, next) {
     try {
