@@ -1,6 +1,6 @@
 <template>
   <div class="ActiveBoard">
-    <h1>Hello</h1>
+    <h1>Hello Boards</h1>
   </div>
 </template>
 
