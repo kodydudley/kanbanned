@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
-const Board = new Schema(
+const Boards = new Schema(
   {
     title: { type: String, required: true },
     creatorId: { type: String, ref: 'Profile', required: true }
@@ -9,11 +9,11 @@ const Board = new Schema(
   { timestamps: true, toJSON: { virtuals: true } }
 )
 
-Board.virtual('creator', {
+Boards.virtual('creator', {
   localField: 'creatorId',
   ref: 'Profile',
   foreignField: '_id',
   justOne: true
 })
 
-export default Board
+export default Boards

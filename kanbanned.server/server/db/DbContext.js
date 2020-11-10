@@ -1,9 +1,9 @@
 import mongoose from 'mongoose'
-import BoardSchema from '../models/Board'
+import BoardsSchema from '../models/Boards'
 import ProfileSchema from '../models/Profile'
 
 class DbContext {
-  Boards = mongoose.model('Board', BoardSchema);
+  Boards = mongoose.model('Boards', BoardsSchema);
   Profile = mongoose.model('Profile', ProfileSchema);
 }
 

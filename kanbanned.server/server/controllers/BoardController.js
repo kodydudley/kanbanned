@@ -8,33 +8,42 @@ export class BoardController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getBoards)
     // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
-      .post('', this.createBoard)
+      .post('', this.createBoards)
+      .delete('/:boardId', this.deleteBoard)
+      .get('/:boardId', this.getBoardById)
   }
 
   async getBoards(req, res, next) {
     try {
-      return res.send(['value1', 'value2'])
+      return res.send(await boardsService.getBoards())
     } catch (error) {
       next(error)
     }
   }
 
-  async createBoard(req, res, next) {
+  async createBoards(req, res, next) {
     try {
       req.body.creatorId = req.userInfo.id
       req.body.creatorEmail = req.userInfo.email
       console.log(req.body.creatorId)
-      res.send(await boardsService.createBoard(req.body))
+      res.send(await boardsService.createBoards(req.body))
     } catch (error) {
       next(error)
     }
   }
 
-  async create(req, res, next) {
+  async deleteBoard(req, res, next) {
     try {
-      // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
-      req.body.creatorEmail = req.userInfo.email
-      res.send(req.body)
+      const userId = req.userInfo.id
+      res.send(await boardsService.deleteBoard(req.params.boardId, userId))
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getBoardById(req, res, next) {
+    try {
+      return res.send(await boardsService.getBoardById(req.params.boardId))
     } catch (error) {
       next(error)
     }
