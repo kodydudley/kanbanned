@@ -18,7 +18,7 @@ export class TasksController extends BaseController {
 
   async getCommentsByTaskId(req, res, next) {
     try {
-      return res.send(await commentsService.getComments({ comment: req.params.commentId }))
+      return res.send(await commentsService.getComments({ task: req.params.taskId }))
     } catch (error) {
       next(error)
     }

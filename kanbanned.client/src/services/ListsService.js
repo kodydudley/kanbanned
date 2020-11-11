@@ -27,11 +27,10 @@ class ListsService {
     }
   }
 
-  async deleteList(listId) {
+  async deleteList(list) {
     try {
-      const res = await api.delete('/lists/' + listId)
-      AppState.lists = res.data
-      this.getLists()
+      await api.delete('/lists/' + list.id)
+      this.getLists(list.board)
     } catch (error) {
       logger.error(error)
     }

@@ -29,7 +29,7 @@ import { AppState } from '../AppState'
 // import router from '../router'
 export default {
   name: 'TasksComponent',
-  props: ['tasksProp', 'commentsProp'],
+  props: ['tasksProp'],
   setup(props) {
     const state = reactive({
       description: '',

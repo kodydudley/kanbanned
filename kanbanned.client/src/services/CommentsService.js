@@ -27,11 +27,10 @@ class CommentsService {
     }
   }
 
-  async deleteComment(commentId) {
+  async deleteComment(comment) {
     try {
-      const res = await api.delete('/comments/' + commentId)
-      AppState.comments = res.data
-      this.getComments()
+      await api.delete('/comments/' + comment.id)
+      this.getComments(comment.task)
     } catch (error) {
       logger.error(error)
     }

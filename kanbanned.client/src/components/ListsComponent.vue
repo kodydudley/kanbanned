@@ -43,8 +43,7 @@ export default {
       lists: computed(() => props.listsProp),
       tasks: computed(() => AppState.tasks[props.listsProp._id]),
       deleteList() {
-        listsService.deleteList(props.listsProp._id)
-        this.getLists()
+        listsService.deleteList(props.listsProp)
       },
       createTasks() {
         tasksService.createTasks(state.description, props.listsProp._id)

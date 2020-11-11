@@ -25,7 +25,7 @@ export class BoardController extends BaseController {
 
   async getBoards(req, res, next) {
     try {
-      return res.send(await boardsService.getBoards())
+      return res.send(await boardsService.getBoards({ creatorId: req.userInfo.id }))
     } catch (error) {
       next(error)
     }

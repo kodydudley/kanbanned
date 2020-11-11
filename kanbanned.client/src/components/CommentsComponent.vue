@@ -3,7 +3,7 @@
     <div class="card">
       <p>
         {{ comments.description }}
-        <button @click="deleteComment(commentId)" class="d-flex float-left btn btn-transparent text-danger">
+        <button @click="deleteComment(comment)" class="d-flex float-left btn btn-transparent text-danger">
           <i class="fas fa-trash-alt"></i>
         </button>
       </p>
@@ -14,8 +14,6 @@
 <script>
 import { computed } from 'vue'
 import { commentsService } from '../services/CommentsService'
-import { AppState } from '../AppState'
-// import router from '../router'
 export default {
   name: 'CommentsComponent',
   props: ['commentsProp', 'tasksProp'],
@@ -24,8 +22,7 @@ export default {
       comments: computed(() => props.commentsProp),
 
       deleteComment() {
-        commentsService.deleteComment(props.commentsProp._id)
-        this.getComments(AppState.comments)
+        commentsService.deleteComment(props.commentsProp)
       }
     }
   },
