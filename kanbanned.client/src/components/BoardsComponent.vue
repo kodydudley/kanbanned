@@ -6,6 +6,9 @@
           {{ boards.title }}
         </div>
       </router-link>
+      <button class="d-flex float-left btn btn-transparent text-danger" @click="deleteBoard(boardId)">
+        <i class="fas fa-trash-alt"></i>
+      </button>
     </div>
   </div>
 </template>
@@ -13,13 +16,22 @@
 <script>
 import { computed } from 'vue'
 import { AppState } from '../AppState'
+import { boardsService } from '../services/BoardsService'
+import { useRoute } from 'vue-router'
+
 export default {
   name: 'BoardsComponent',
   props: ['boardsProp'],
   setup(props) {
+    const route = useRoute()
+
     return {
       profile: computed(() => AppState.profile),
-      boards: computed(() => props.boardsProp)
+      boards: computed(() => props.boardsProp),
+      deleteBoard() {
+        boardsService.deleteBoard(props.boardsProp._id)
+        route.push({ name: 'Profile' })
+      }
     }
   },
   components: {}

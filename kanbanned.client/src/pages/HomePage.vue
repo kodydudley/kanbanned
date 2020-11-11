@@ -7,7 +7,9 @@
         @click="login"
         v-if="!user.isAuthenticated"
       >
-        Please Login to Continue
+        <h3>
+          Please Login to Continue
+        </h3>
       </button>
       <!-- <span class="mx-2 text-white">Please Login to Continue</span> -->
     </h1>
