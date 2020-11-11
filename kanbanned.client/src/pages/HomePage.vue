@@ -3,7 +3,7 @@
     <img class="img" src="https://www.shareicon.net/data/512x512/2016/09/07/826444_map_512x512.png" alt="Sitemap Logo">
     <h1 class="my-5  p-3 rounded d-flex align-items-center">
       <button
-        class="btn btn-outline-primary text-uppercase"
+        class="btn btn-primary text-uppercase text-dark"
         @click="login"
         v-if="!user.isAuthenticated"
       >
