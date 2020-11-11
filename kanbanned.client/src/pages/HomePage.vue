@@ -1,15 +1,40 @@
 <template>
   <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo">
-    <h1 class="my-5 bg-dark text-light p-3 rounded d-flex align-items-center">
-      <span class="mx-2 text-white">Vue 3 Starter</span>
+    <img class="img" src="https://www.shareicon.net/data/512x512/2016/09/07/826444_map_512x512.png" alt="Sitemap Logo">
+    <h1 class="my-5  p-3 rounded d-flex align-items-center">
+      <button
+        class="btn btn-outline-primary text-uppercase"
+        @click="login"
+        v-if="!user.isAuthenticated"
+      >
+        Please Login to Continue
+      </button>
+      <!-- <span class="mx-2 text-white">Please Login to Continue</span> -->
     </h1>
   </div>
 </template>
 
 <script>
+import { AuthService } from '../services/AuthService'
+import { AppState } from '../AppState'
+import { computed, reactive } from 'vue'
 export default {
-  name: 'Home'
+  name: 'Home',
+  setup() {
+    const state = reactive({
+      dropOpen: false
+    })
+    return {
+      state,
+      user: computed(() => AppState.user),
+      async login() {
+        AuthService.loginWithPopup()
+      },
+      async logout() {
+        await AuthService.logout({ returnTo: window.location.origin })
+      }
+    }
+  }
 }
 </script>
 
@@ -18,8 +43,8 @@ export default {
   text-align: center;
   user-select: none;
   > img{
-    height: 200px;
-    width: 200px;
+    height: 300px;
+    width: 300px;
   }
 }
 </style>
