@@ -5,7 +5,7 @@ const ObjectId = Schema.Types.ObjectId
 const Comments = new Schema(
   {
     description: { type: String, required: true },
-    tasks: { type: ObjectId, ref: 'Tasks', required: true },
+    task: { type: ObjectId, ref: 'Tasks', required: true },
     creatorId: { type: String, ref: 'Profile', required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }

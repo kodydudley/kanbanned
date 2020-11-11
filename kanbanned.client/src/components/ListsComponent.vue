@@ -32,7 +32,6 @@ export default {
   props: ['listsProp'],
   setup(props) {
     const state = reactive({
-      props: ['listsProp'],
       description: '',
       newTask: {}
     })

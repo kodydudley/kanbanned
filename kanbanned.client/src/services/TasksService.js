@@ -27,7 +27,7 @@ class TasksService {
     }
   }
 
-  async deletetask(taskId) {
+  async deleteTask(taskId) {
     try {
       const res = await api.delete('/tasks/' + taskId)
       AppState.tasks = res.data
