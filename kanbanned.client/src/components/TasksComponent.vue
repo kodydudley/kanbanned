@@ -1,16 +1,35 @@
 <template>
   <div class="tasksComponent my-3 justify-content-around">
-    <div class="card">
+    <div class="mt-5">
       <h4>
         {{ tasks.description }}
+
         <button @click="deleteTask(taskId)" class="d-flex float-left btn btn-transparent text-danger">
           <i class="fas fa-trash-alt"></i>
         </button>
       </h4>
+      <div class="dropdown">
+        <button class="btn btn-primary text-dark dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+        >
+          Move
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item"
+             @click="moveTask(list.id)"
+             v-for="list in lists"
+             :key="list"
+          >{{ list.description }}</a>
+        </div>
+      </div>
       <p class="text-center">
         Comments:
       </p>
-      <form class="form-group" @submit.prevent="createComments">
+      <form class="form-group text-center" @submit.prevent="createComments">
         <input class="form-control" type="text" placeholder="Enter Comment" v-model="state.description">
         <button class="btn btn-transparent text-success">
           <i class="fas fa-comment"></i>
@@ -26,10 +45,9 @@ import { computed, reactive, onMounted } from 'vue'
 import { tasksService } from '../services/TasksService'
 import { commentsService } from '../services/CommentsService'
 import { AppState } from '../AppState'
-// import router from '../router'
 export default {
   name: 'TasksComponent',
-  props: ['tasksProp'],
+  props: ['tasksProp', 'listsProp'],
   setup(props) {
     const state = reactive({
       description: '',
@@ -42,12 +60,17 @@ export default {
       state,
       tasks: computed(() => props.tasksProp),
       comments: computed(() => AppState.comments[props.tasksProp._id]),
+      lists: computed(() => AppState.lists),
+      moveList: computed(() => props.listsProp),
 
       deleteTask() {
         tasksService.deleteTask(props.tasksProp)
       },
       createComments() {
         commentsService.createComments(state.description, props.tasksProp._id)
+      },
+      moveTask(newListId) {
+        tasksService.moveTask(props.tasksProp, newListId)
       }
     }
   },

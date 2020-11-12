@@ -8,7 +8,7 @@ export class TasksController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('/:taskId/comments', this.getCommentsByTaskId)
-
+      .put('/:taskId', this.getTaskByIdAndUpdate)
       // .get('', this.getTasks)
     // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .post('', this.createTasks)
@@ -47,6 +47,14 @@ export class TasksController extends BaseController {
     try {
       const userId = req.userInfo.id
       res.send(await tasksService.deleteTask(req.params.taskId, userId))
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getTaskByIdAndUpdate(req, res, next) {
+    try {
+      return res.put(await tasksService.getTaskByIdAndUpdate(req.params.taskId, req.body))
     } catch (error) {
       next(error)
     }

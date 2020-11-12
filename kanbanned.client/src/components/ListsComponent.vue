@@ -1,23 +1,25 @@
 <template>
-  <div class="listsComponent my-3 col-4 justify-content-around">
-    <div class="card text-center">
-      <h1>
-        {{ lists.description }}
-        <button @click="deleteList" class="d-flex float-left btn btn-transparent text-danger">
-          <i class="fas fa-trash-alt"></i>
-        </button>
-      </h1>
-      <div class="card">
-        <p>Tasks:</p>
-        <form class="form-group" @submit.prevent="createTasks">
-          <input class="form-control" type="text" placeholder="Enter New Task" v-model="state.description">
-          <button type="submit" class="btn btn-transparent text-success">
-            <i class="fas fa-plus-square"></i>
+  <div class="card col-3 mx-3 my-3">
+    <div class="listsComponent my-3">
+      <div class="card text-center">
+        <h1>
+          {{ lists.description }}
+          <button @click="deleteList" class="d-flex float-left btn btn-transparent text-danger">
+            <i class="fas fa-trash-alt"></i>
           </button>
-        </form>
+        </h1>
+        <div class="card">
+          <p>Tasks:</p>
+          <form class="form-group" @submit.prevent="createTasks">
+            <input class="form-control" type="text" placeholder="Enter New Task" v-model="state.description">
+            <button type="submit" class="btn btn-transparent text-success">
+              <i class="fas fa-plus-square"></i>
+            </button>
+          </form>
+        </div>
       </div>
+      <tasks-component v-for="task in tasks" :key="task" :tasks-prop="task" />
     </div>
-    <tasks-component v-for="task in tasks" :key="task" :tasks-prop="task" />
   </div>
 </template>
 

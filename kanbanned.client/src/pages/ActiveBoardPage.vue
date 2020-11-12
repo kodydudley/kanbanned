@@ -1,11 +1,11 @@
 <template>
-  <div class="ActiveBoard container-fluid">
+  <div class="ActiveBoard container-fluid bg-dark bodyFont">
     <div class="row mt-3">
       <div class="col-12">
         <button class="btn btn-outline-danger" @click="deleteBoard(boardId)">
           Delete Board
         </button>
-        <h1 class="text-center mt-3">
+        <h1 class="text-center mt-3 text-light">
           {{ activeBoard.title }}
         </h1>
       </div>
@@ -18,7 +18,7 @@
         </form>
       </div>
     </div>
-    <div class="row">
+    <div class="row justify-content-center">
       <listsComponent v-for="list in lists" :key="list" :lists-prop="list" />
     </div>
   </div>
@@ -62,5 +62,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.bodyFont{
+font-family: 'Poppins', sans-serif;
+}
 
 </style>

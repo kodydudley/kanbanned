@@ -2,6 +2,10 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 import Tasks from '../models/Tasks'
 class TasksService {
+  async getTaskByIdAndUpdate(taskId, body) {
+    return await dbContext.Tasks.findByIdAndUpdate(taskId, body)
+  }
+
   async getTasks(query = {}) {
     return await dbContext.Tasks.find(query).populate('creatorId')
   }

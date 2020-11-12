@@ -18,6 +18,18 @@ class TasksService {
     }
   }
 
+  async moveTask(tasksProps, listsId) {
+    try {
+      const newListId = {
+        list: listsId
+      }
+      await api.put('tasks/' + tasksProps.id, newListId)
+      this.getTasks(listsId)
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
   async getTasks(listId) {
     try {
       const res = await api.get('/lists/' + listId + '/tasks')
