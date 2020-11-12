@@ -31,6 +31,7 @@ export default {
       user: computed(() => AppState.user),
       async login() {
         AuthService.loginWithPopup()
+        await AuthService.loginWithPopup()
       },
       async logout() {
         await AuthService.logout({ returnTo: window.location.origin })
@@ -48,5 +49,9 @@ export default {
     height: 300px;
     width: 300px;
   }
+background-image: url('https://cdn.hipwallpaper.com/i/35/87/HyczqQ.jpg');
+background-repeat: no-repeat;
+background-size: cover;
+
 }
 </style>

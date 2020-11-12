@@ -25,6 +25,7 @@ class TasksService {
       }
       await api.put('tasks/' + tasksProps.id, newListId)
       this.getTasks(listsId)
+      this.getTasks(tasksProps.listId)
     } catch (error) {
       logger.error(error)
     }
