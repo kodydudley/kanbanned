@@ -1,5 +1,4 @@
 import { AppState } from '../AppState'
-import router from '../router'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
@@ -25,9 +24,8 @@ class BoardsService {
 
   async deleteBoard(boardId) {
     try {
-      const res = await api.delete('/boards/' + boardId)
-      AppState.boards = res.data
-      router.push({ name: 'Profile' })
+      await api.delete('/boards/' + boardId)
+      this.getBoards()
     } catch (error) {
       logger.error(error)
     }

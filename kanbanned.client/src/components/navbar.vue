@@ -30,7 +30,7 @@
             About
           </router-link>
         </li>
-        <li class="nav-item mr-2">
+        <li class="nav-item mr-2" v-show="user.isAuthenticated">
           <router-link :to="{ name: 'Profile' }">
             <div class="nav-link headerFont">
               Profile

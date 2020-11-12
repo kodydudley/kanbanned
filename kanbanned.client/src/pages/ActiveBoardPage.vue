@@ -54,6 +54,7 @@ export default {
       },
       createLists() {
         listsService.createLists(state.description)
+        state.description = ''
       }
     }
   },

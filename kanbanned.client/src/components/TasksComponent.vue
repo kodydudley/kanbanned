@@ -8,8 +8,8 @@
           <i class="fas fa-trash-alt"></i>
         </button>
       </h4>
-      <div class="dropdown">
-        <button class="btn btn-primary text-dark dropdown-toggle"
+      <div class="dropdown text-right">
+        <button class="btn btn-transparent btn-outline-dark dropdown-toggle"
                 type="button"
                 id="dropdownMenuButton"
                 data-toggle="dropdown"
@@ -68,6 +68,7 @@ export default {
       },
       createComments() {
         commentsService.createComments(state.description, props.tasksProp._id)
+        state.description = ''
       },
       moveTask(newListId) {
         tasksService.moveTask(props.tasksProp, newListId)

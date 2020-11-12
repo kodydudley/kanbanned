@@ -52,6 +52,7 @@ export default {
       boards: computed(() => AppState.boards),
       createBoards() {
         boardsService.createBoards(state.newBoard)
+        state.newBoard.title = ''
       }
     }
   },

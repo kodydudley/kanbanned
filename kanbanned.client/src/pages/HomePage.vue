@@ -11,7 +11,6 @@
           Please Login to Continue
         </h3>
       </button>
-      <!-- <span class="mx-2 text-white">Please Login to Continue</span> -->
     </h1>
   </div>
 </template>
@@ -31,7 +30,6 @@ export default {
       user: computed(() => AppState.user),
       async login() {
         AuthService.loginWithPopup()
-        await AuthService.loginWithPopup()
       },
       async logout() {
         await AuthService.logout({ returnTo: window.location.origin })

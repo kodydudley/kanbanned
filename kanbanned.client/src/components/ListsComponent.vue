@@ -49,6 +49,7 @@ export default {
       },
       createTasks() {
         tasksService.createTasks(state.description, props.listsProp)
+        state.description = ''
       }
     }
   },
