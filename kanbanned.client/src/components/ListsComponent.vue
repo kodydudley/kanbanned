@@ -29,6 +29,8 @@ import { listsService } from '../services/ListsService'
 import { tasksService } from '../services/TasksService'
 // import router from '../router'
 import { AppState } from '../AppState'
+import swal from 'sweetalert'
+
 export default {
   name: 'ListsComponent',
   props: ['listsProp'],
@@ -45,7 +47,23 @@ export default {
       lists: computed(() => props.listsProp),
       tasks: computed(() => AppState.tasks[props.listsProp._id]),
       deleteList() {
-        listsService.deleteList(props.listsProp)
+        swal({
+          title: 'Are you sure?',
+          text: 'Once deleted, you will not be able to recover this list!',
+          icon: 'warning',
+          buttons: true,
+          dangerMode: true
+        })
+          .then((willDelete) => {
+            if (willDelete) {
+              listsService.deleteList(props.listsProp)
+              swal('Poof! Your list has been deleted!', {
+                icon: 'success'
+              })
+            } else {
+              swal('Your list is safe!')
+            }
+          })
       },
       createTasks() {
         tasksService.createTasks(state.description, props.listsProp)

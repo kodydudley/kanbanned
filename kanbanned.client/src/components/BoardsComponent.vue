@@ -19,6 +19,7 @@
 import { computed } from 'vue'
 import { AppState } from '../AppState'
 import { boardsService } from '../services/BoardsService'
+import swal from 'sweetalert'
 
 export default {
   name: 'BoardsComponent',
@@ -28,7 +29,23 @@ export default {
       profile: computed(() => AppState.profile),
       boards: computed(() => props.boardsProp),
       deleteBoard() {
-        boardsService.deleteBoard(props.boardsProp._id)
+        swal({
+          title: 'Are you sure?',
+          text: 'Once deleted, you will not be able to recover this board!',
+          icon: 'warning',
+          buttons: true,
+          dangerMode: true
+        })
+          .then((willDelete) => {
+            if (willDelete) {
+              boardsService.deleteBoard(props.boardsProp._id)
+              swal('Poof! Your board has been deleted!', {
+                icon: 'success'
+              })
+            } else {
+              swal('Your board is safe!')
+            }
+          })
       }
     }
   },

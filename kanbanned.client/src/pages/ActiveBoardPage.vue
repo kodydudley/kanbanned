@@ -31,6 +31,8 @@ import { reactive, computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import { listsService } from '../services/ListsService'
 import router from '../router'
+import swal from 'sweetalert'
+
 export default {
   name: 'ActiveBoard',
   setup(props) {
@@ -50,8 +52,24 @@ export default {
       activeBoard: computed(() => AppState.activeBoard),
       lists: computed(() => AppState.lists),
       deleteBoard() {
-        boardsService.deleteBoard(route.params.boardId)
-        router.push({ name: 'Profile' })
+        swal({
+          title: 'Are you sure?',
+          text: 'Once deleted, you will not be able to recover this board!',
+          icon: 'warning',
+          buttons: true,
+          dangerMode: true
+        })
+          .then((willDelete) => {
+            if (willDelete) {
+              boardsService.deleteBoard(route.params.boardId)
+              router.push({ name: 'Profile' })
+              swal('Poof! Your board has been deleted!', {
+                icon: 'success'
+              })
+            } else {
+              swal('Your board is safe!')
+            }
+          })
       },
       createLists() {
         listsService.createLists(state.description)
