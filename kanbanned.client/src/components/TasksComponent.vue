@@ -44,8 +44,7 @@ export default {
       comments: computed(() => AppState.comments[props.tasksProp._id]),
 
       deleteTask() {
-        tasksService.deleteTask(props.tasksProp._id)
-        this.getTasks(AppState.tasks)
+        tasksService.deleteTask(props.tasksProp)
       },
       createComments() {
         commentsService.createComments(state.description, props.tasksProp._id)

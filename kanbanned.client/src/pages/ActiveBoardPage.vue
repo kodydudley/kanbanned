@@ -1,18 +1,22 @@
 <template>
   <div class="ActiveBoard container-fluid">
-    <div class="row">
+    <div class="row mt-3">
       <div class="col-12">
         <button class="btn btn-outline-danger" @click="deleteBoard(boardId)">
           Delete Board
         </button>
-        <h1>{{ activeBoard.title }}</h1>
+        <h1 class="text-center mt-3">
+          {{ activeBoard.title }}
+        </h1>
       </div>
-      <form class="form-group" @submit.prevent="createLists">
-        <input class="form-control" type="text" placeholder="Enter New List" v-model="state.description">
-        <button type="submit" class="btn btn-transparent text-success">
-          <i class="fas fa-plus-square"></i>
-        </button>
-      </form>
+      <div class="col-8 offset-2 text-center">
+        <form class="form-group text-center" @submit.prevent="createLists">
+          <input class="form-control text-center" type="text" placeholder="Enter New List" v-model="state.description">
+          <button type="submit" class="btn btn-transparent text-success">
+            <i class="fas fa-plus-square fa-3x"></i>
+          </button>
+        </form>
+      </div>
     </div>
     <div class="row">
       <listsComponent v-for="list in lists" :key="list" :lists-prop="list" />

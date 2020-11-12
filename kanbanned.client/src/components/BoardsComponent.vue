@@ -1,9 +1,11 @@
 <template>
   <div class="boardsComponent my-3 col-4 justify-content-around">
-    <div class="card">
+    <div class="card bg-dark pt-4">
       <router-link :to="{name: 'ActiveBoard', params:{boardId: boards._id}} ">
-        <div class="text-dark bodyFont">
-          {{ boards.title }}
+        <div class="text-light bodyFont">
+          <h3>
+            {{ boards.title }}
+          </h3>
         </div>
       </router-link>
       <button class="d-flex float-left btn btn-transparent text-danger" @click="deleteBoard(boardId)">

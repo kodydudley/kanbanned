@@ -4,14 +4,14 @@ import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class TasksService {
-  async createTasks(data, listId) {
+  async createTasks(data, lists) {
     try {
       const newtask = {
         description: data,
-        list: listId
+        list: lists.id
       }
       const res = await api.post('/tasks', newtask)
-      this.getTasks(listId)
+      this.getTasks(lists.id)
       logger.log(res.data)
     } catch (error) {
       logger.error(error)
@@ -27,11 +27,10 @@ class TasksService {
     }
   }
 
-  async deleteTask(taskId) {
+  async deleteTask(task) {
     try {
-      const res = await api.delete('/tasks/' + taskId)
-      AppState.tasks = res.data
-      this.getTasks()
+      await api.delete('/tasks/' + task.id)
+      this.getTasks(task.list)
     } catch (error) {
       logger.error(error)
     }

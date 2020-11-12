@@ -2,10 +2,18 @@
   <div class="about text-center container-fluid bodyFont">
     <div class="row justify-content-center">
       <h1>
-        Welcome To Your Boards {{ profile.name }}
+        Welcome To Your Boards
       </h1>
-      <img class="rounded" :src="profile.picture" alt="" />
-      <p>{{ profile.email }}</p>
+    </div>
+    <div class="row mt-3">
+      <div class="col-6 justify-content-center">
+        <h1>
+          {{ profile.name }}
+        </h1>
+      </div>
+      <div class="col-6 justify-content-center">
+        <img class="rounded" :src="profile.picture" alt="" />
+      </div>
     </div>
     <div class="row justify-content-center my-3">
       <form @submit.prevent="createBoards">

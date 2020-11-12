@@ -46,7 +46,7 @@ export default {
         listsService.deleteList(props.listsProp)
       },
       createTasks() {
-        tasksService.createTasks(state.description, props.listsProp._id)
+        tasksService.createTasks(state.description, props.listsProp)
       }
     }
   },
