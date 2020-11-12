@@ -30,6 +30,7 @@ import { useRoute } from 'vue-router'
 import { reactive, computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import { listsService } from '../services/ListsService'
+import router from '../router'
 export default {
   name: 'ActiveBoard',
   setup(props) {
@@ -50,7 +51,7 @@ export default {
       lists: computed(() => AppState.lists),
       deleteBoard() {
         boardsService.deleteBoard(route.params.boardId)
-        route.push({ name: 'Profile' })
+        router.push({ name: 'Profile' })
       },
       createLists() {
         listsService.createLists(state.description)
