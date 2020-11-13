@@ -18,7 +18,12 @@
           </form>
         </div>
       </div>
-      <tasks-component v-for="task in tasks" :key="task" :tasks-prop="task" />
+      <div @click="state.showTasks = !state.showTasks">
+        <i class="fas fa-arrow-circle-down text-success fa-lg"></i>
+      </div>
+      <div v-if="state.showTasks">
+        <tasks-component v-for="task in tasks" :key="task" :tasks-prop="task" />
+      </div>
     </div>
   </div>
 </template>
@@ -37,7 +42,8 @@ export default {
   setup(props) {
     const state = reactive({
       description: '',
-      newTask: {}
+      newTask: {},
+      showTasks: false
     })
     onMounted(() => {
       tasksService.getTasks(props.listsProp._id)
