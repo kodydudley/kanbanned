@@ -35,7 +35,7 @@ export class ListsController extends BaseController {
     try {
       req.body.creatorId = req.userInfo.id
       req.body.creatorEmail = req.userInfo.email
-      console.log(req.body.creatorId)
+      // console.log(req.body.creatorId)
       res.send(await listsService.createLists(req.body))
     } catch (error) {
       next(error)
