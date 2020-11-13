@@ -20,10 +20,10 @@ export default class Startup {
     app.use(helmet())
     app.use(cors(corsOptions))
     app.use(bp.json({ limit: '50mb' }))
-    app.use('', (req, res, next) => {
-      res.setHeader('Content-Security-Policy', 'script-src', 'self', 'https://organyze.herokuapp.com')
-      return next()
-    })
+    // app.use('', (req, res, next) => {
+    //   res.setHeader('Content-Security-Policy', 'script-src', 'self', 'https://organyze.herokuapp.com')
+    //   return next()
+    // })
 
     // NOTE Configures auth0 middleware that is used throughout controllers
     Auth0Provider.configure({
