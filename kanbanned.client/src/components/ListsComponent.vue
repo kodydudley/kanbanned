@@ -19,7 +19,7 @@
         </div>
       </div>
       <div @click="state.showTasks = !state.showTasks">
-        <i class="fas fa-arrow-circle-down text-success fa-lg"></i>
+        <i class="fas fa-arrow-circle-down text-success float-left fa-lg mt-3"></i>
       </div>
       <div v-if="state.showTasks">
         <tasks-component v-for="task in tasks" :key="task" :tasks-prop="task" />
