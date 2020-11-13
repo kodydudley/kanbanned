@@ -20,6 +20,10 @@ export default class Startup {
     app.use(helmet())
     app.use(cors(corsOptions))
     app.use(bp.json({ limit: '50mb' }))
+    app.use('', (req, res, next) => {
+      res.setHeader('Content-Security-Policy', 'script-src', 'self', 'sha256-4RS22DYeB7U14dra4KcQYxmwt5HkOInieXK1NUMBmQI=')
+      return next()
+    })
 
     // NOTE Configures auth0 middleware that is used throughout controllers
     Auth0Provider.configure({
