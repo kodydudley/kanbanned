@@ -21,7 +21,7 @@ export default class Startup {
     app.use(cors(corsOptions))
     app.use(bp.json({ limit: '50mb' }))
     app.use('', (req, res, next) => {
-      res.setHeader('Content-Security-Policy', 'script-src', 'self', 'sha256-4RS22DYeB7U14dra4KcQYxmwt5HkOInieXK1NUMBmQI=')
+      res.setHeader('Content-Security-Policy', 'script-src', 'self', 'https://organyze.herokuapp.com')
       return next()
     })
 
