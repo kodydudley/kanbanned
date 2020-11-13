@@ -3,6 +3,7 @@ module.exports = {
   // publicPath: '/',
   outputDir: '../kanbanned.server/client',
   productionSourceMap: false,
+  transpileDependencies: ['@bcwdev/auth0provider-client']
   // chainWebpack: config=>{
   //   config.plugins
   //   .delete("split-manifest")
