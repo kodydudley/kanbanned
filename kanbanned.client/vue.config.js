@@ -3,9 +3,9 @@ module.exports = {
   publicPath: '/',
   outputDir: '../kanbanned.server/client',
   productionSourceMap: false,
-  chainWebpack: config=>{
-    config.plugins
-    .delete("split-manifest")
-    .delete("inline-manifest")
-  }
+  // chainWebpack: config=>{
+  //   config.plugins
+  //   .delete("split-manifest")
+  //   .delete("inline-manifest")
+  // }
 }
